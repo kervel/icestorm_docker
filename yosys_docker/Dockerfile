@@ -30,3 +30,5 @@ RUN git clone https://github.com/cliffordwolf/yosys.git yosys \
 	&& make install
 
 RUN git clone https://github.com/cliffordwolf/icotools
+
+RUN apt-get -y install verilator
