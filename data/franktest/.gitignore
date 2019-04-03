@@ -1,0 +1,3 @@
+testbench
+verilator
+*.vcd
