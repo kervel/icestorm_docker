@@ -5,17 +5,17 @@ SUBMAKE := $(MAKE) --no-print-directory -C
 
 all: library
 
-verilate: $(VDIRFB)/Vuart.h
+verilate: $(VDIRFB)/Vtest.h
 
-$(VDIRFB)/Vuart.h:
-	$(VERILATOR) $(VFLAGS) uart.v
+$(VDIRFB)/Vtest.h: uart_tx.v helloworld_rom.v test.v
+	$(VERILATOR) $(VFLAGS) test.v
 
 
-library: $(VDIRFB)/Vuart.h
-	$(SUBMAKE) $(VDIRFB)/ -f Vuart.mk
+library: $(VDIRFB)/Vtest.h
+	$(SUBMAKE) $(VDIRFB)/ -f Vtest.mk
 
 testbench: library
-	g++ -o testbench testbench.cpp  /usr/share/verilator/include/verilated.cpp /usr/share/verilator/include/verilated_vcd_c.cpp $(VDIRFB)/Vuart__ALL.a  -I/usr/share/verilator/include  -I$(VDIRFB)/ 
+	g++ -o testbench testbench.cpp  /usr/share/verilator/include/verilated.cpp /usr/share/verilator/include/verilated_vcd_c.cpp $(VDIRFB)/Vtest__ALL.a  -I/usr/share/verilator/include  -I$(VDIRFB)/ 
 
 
 clean:

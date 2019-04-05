@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "Vuart.h"
+#include "Vtest.h"
 #include "verilated.h"
 
 
@@ -87,7 +87,7 @@ int main(int argc, char **argv) {
 	Verilated::commandArgs(argc, argv);
 
 	// Create an instance of our module under test
-	TESTBENCH<Vuart> *tb = new TESTBENCH<Vuart>();
+	TESTBENCH<Vtest> *tb = new TESTBENCH<Vtest>();
 
 
 	tb->opentrace("trace.vcd");
