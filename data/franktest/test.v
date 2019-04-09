@@ -9,8 +9,11 @@ module test(i_clock, o_signal);
 
     initial next = 1;
 
-    helloworld_rom r(i_clock, next, data);
+    //helloworld_rom r(i_clock, 0, data);
 
+
+
+    single_char s(i_clock, data, act);
 
     uart_tx tx(i_clock, data, act, o_signal,  busy);
 
@@ -18,7 +21,7 @@ module test(i_clock, o_signal);
     always @(posedge i_clock)
         begin
             next <= (!busy && !act && !next);
-            act <= next;
+            //act <= next;
         end
 
 endmodule;

@@ -19,9 +19,9 @@ module helloworld_rom(i_clock, i_next, o_data);
             end
             idx = 0;
         end
+    assign o_data = romcontents[idx];
     always @(posedge i_clock)
         begin
-            o_data <= romcontents[idx];
             have_read <= 1;
             if (i_next)
                 if (o_data == 8'b00000000 && have_read)
