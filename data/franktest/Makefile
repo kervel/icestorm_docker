@@ -7,7 +7,7 @@ all: library
 
 verilate: $(VDIRFB)/Vtest.h
 
-$(VDIRFB)/Vtest.h: uart_tx.v helloworld_rom.v test.v
+$(VDIRFB)/Vtest.h: uart_tx.v helloworld_rom.v test.v single_char.v
 	$(VERILATOR) $(VFLAGS) test.v
 
 

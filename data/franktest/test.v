@@ -9,11 +9,11 @@ module test(i_clock, o_signal);
 
     initial next = 1;
 
-    //helloworld_rom r(i_clock, 0, data);
+    helloworld_rom r(i_clock, next, act, data);
 
 
 
-    single_char s(i_clock, data, act);
+    //single_char s(i_clock, data, act);
 
     uart_tx tx(i_clock, data, act, o_signal,  busy);
 
