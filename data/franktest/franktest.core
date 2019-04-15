@@ -1,0 +1,28 @@
+CAPI=2:
+
+name : ::franktest:0
+
+filesets:
+   rtl:
+     files:
+       - helloworld_rom.v
+       - single_char.v
+       - test.v
+       - uart_tx.v
+     file_type: verilogSource
+     
+   tb:
+     files:
+       - testbench.cpp
+     file_type: cppSource
+
+
+targets:
+   sim:
+     filesets: [rtl, tb]
+     default_tool: verilator
+     tools:
+       verilator:
+         verilator_options : [--trace]
+     toplevel: test
+   
