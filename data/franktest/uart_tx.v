@@ -64,5 +64,5 @@ module uart_tx(i_clock, i_data, i_act, o_signal, o_busy);
     end
 
 
-endmodule;
+endmodule
 /* verilator lint_on DECLFILENAME */

@@ -15,9 +15,20 @@ filesets:
      files:
        - testbench.cpp
      file_type: cppSource
+   constraints:
+     files: [icoboard.pcf]
+     file_type : PCF
 
 
 targets:
+   synth:
+     default_tool : icestorm
+     filesets : [rtl, constraints]
+     tools:
+       icestorm:
+         nextpnr_options : [--freq, 13, --hx8k]
+         pnr : next
+     toplevel : [test]
    sim:
      filesets: [rtl, tb]
      default_tool: verilator
@@ -25,4 +36,3 @@ targets:
        verilator:
          verilator_options : [--trace]
      toplevel: test
-   

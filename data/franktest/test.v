@@ -1,13 +1,17 @@
-module test(i_clock, o_signal);
-    input wire i_clock;
+module test(clk_100mhz, pmod1_1);
+    input wire clk_100mhz;
 
     reg [7:0] data;
     reg next;
-    output wire o_signal;
+    output wire pmod1_1;
     reg act;
     wire busy;
 
     initial next = 1;
+    wire i_clock;
+    wire o_signal;
+    assign i_clock = clk_100mhz;
+    assign pmos1_1 = o_signal;
 
     helloworld_rom r(i_clock, next, act, data);
 
@@ -24,4 +28,4 @@ module test(i_clock, o_signal);
             //act <= next;
         end
 
-endmodule;
+endmodule
