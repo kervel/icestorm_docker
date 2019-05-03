@@ -1,5 +1,8 @@
-module test(clk_100mhz, pmod1_1);
+module test(clk_100mhz, pmod1_1, led1, led2, led3);
     input wire clk_100mhz;
+    output wire led1;
+    output wire led2;
+    output wire led3;
 
     reg [7:0] data;
     reg next;
@@ -15,7 +18,9 @@ module test(clk_100mhz, pmod1_1);
 
     helloworld_rom r(i_clock, next, act, data);
 
-
+    assign led1 = o_signal;
+    assign led2 = act;
+    assign led3 = busy;
 
     //single_char s(i_clock, data, act);
 

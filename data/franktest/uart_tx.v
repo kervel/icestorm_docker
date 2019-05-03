@@ -11,7 +11,7 @@ module uart_tx(i_clock, i_data, i_act, o_signal, o_busy);
     reg [8:0] shift_register;
     reg [3:0] state_register;
 
-    parameter BAUDRATE = 56600;
+    parameter BAUDRATE = 57600;
     parameter HZ = 100_000_000;
     localparam DIVIDER = HZ / BAUDRATE;
     // big adders slow down the max clock frequency so try to keep the adder as small as possible
