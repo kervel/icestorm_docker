@@ -26,7 +26,7 @@ targets:
      filesets : [rtl, constraints]
      tools:
        icestorm:
-         nextpnr_options : [--freq, 13, --hx8k]
+         nextpnr_options : [--freq, 100, --hx8k]
          pnr : next
      toplevel : [test]
    sim:

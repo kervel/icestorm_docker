@@ -11,7 +11,7 @@ module test(clk_100mhz, pmod1_1);
     wire i_clock;
     wire o_signal;
     assign i_clock = clk_100mhz;
-    assign pmos1_1 = o_signal;
+    assign pmod1_1 = o_signal;
 
     helloworld_rom r(i_clock, next, act, data);
 

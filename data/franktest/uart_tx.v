@@ -10,11 +10,16 @@ module uart_tx(i_clock, i_data, i_act, o_signal, o_busy);
 
     reg [8:0] shift_register;
     reg [3:0] state_register;
-    reg [31:0] counter;
 
     parameter BAUDRATE = 56600;
-    parameter HZ = 200_000_000;
-    parameter DIVIDER = HZ / BAUDRATE;
+    parameter HZ = 100_000_000;
+    localparam DIVIDER = HZ / BAUDRATE;
+    // big adders slow down the max clock frequency so try to keep the adder as small as possible
+    localparam COUNTER_WIDTH = $clog2(DIVIDER);
+    localparam divider_b = DIVIDER[COUNTER_WIDTH:0];
+
+    reg [COUNTER_WIDTH:0] counter;
+
 
     initial o_busy = 0;
     initial shift_register = 9'hFF;
@@ -33,7 +38,7 @@ module uart_tx(i_clock, i_data, i_act, o_signal, o_busy);
                 counter <= 0;
             end
       else
-        if (counter >= DIVIDER - 1)
+        if (counter >= divider_b - 1)
         begin
             counter <= 0;
             if (o_busy && state_register < 4'd8)

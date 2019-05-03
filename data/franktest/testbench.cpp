@@ -33,7 +33,9 @@ public:
 		//m_core->i_reset = 0;
 	}
 
-	virtual bool	done(void) { return (Verilated::gotFinish()); }
+	virtual bool	done(void) {
+		return (Verilated::gotFinish() || m_tickcount > 1000 * 1000); 
+	}
 
 	// Open/create a trace file
 	virtual	void	opentrace(const char *vcdname) {
@@ -55,18 +57,18 @@ public:
 	virtual void	tick(void) {
 		m_tickcount++;
 
-		m_core->i_clock = 0;
+		m_core->clk_100mhz = 0;
 		m_core->eval();
 
 		if(m_trace) m_trace->dump(10*m_tickcount-2);
 
 		// Repeat for the positive edge of the clock
-		m_core->i_clock = 1;
+		m_core->clk_100mhz = 1;
 		m_core->eval();
 		if(m_trace) m_trace->dump(10*m_tickcount);
 
 		// Now the negative edge
-		m_core->i_clock = 0;
+		m_core->clk_100mhz = 0;
 		m_core->eval();
 		if (m_trace) {
 			// This portion, though, is a touch different.
